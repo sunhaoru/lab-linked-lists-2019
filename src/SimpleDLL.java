@@ -130,10 +130,17 @@ public class SimpleDLL<T> implements SimpleList<T> {
       } // prevIndex
 
       public T previous() throws NoSuchElementException {
-        if (!this.hasPrevious())
+        if (!this.hasPrevious()) {
           throw new NoSuchElementException();
-        // STUB
-        return null;
+        }//if
+        this.update = this.cursor.prev;
+        
+        //Update cursor
+        this.cursor.prev = this.update.prev;
+        this.cursor.next = this.update;
+        
+        this.pos--;
+        return this.update.value;
       } // previous()
 
       public void remove() {
